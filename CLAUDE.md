@@ -1,6 +1,8 @@
 # tm creative lab — quiz de pacotes
 
-`index.html` é um quiz de uma página, em HTML/CSS/JS puro, sem build, que recomenda pacotes de social media da "tm creative lab". O contexto de marca abaixo é regra fixa do projeto.
+Site estático em HTML/CSS/JS puro, sem build, da "tm creative lab". O contexto de marca abaixo é regra fixa do projeto.
+- `index.html`: home (landing de uma coluna; os CTAs levam a `quiz/index.html#comecar`; links apontam para o arquivo, não para a pasta, para funcionar também via file://).
+- `quiz/index.html`: quiz que recomenda pacotes de social media. O hash `#comecar` pula a capa. Caminhos de assets começam com `../`.
 
 ## Fonte da verdade
 - Manual: `./_Manual_ID_Visual_TMLab.pdf` (PDF de imagens, sem texto extraível; os valores abaixo foram transcritos dele).
