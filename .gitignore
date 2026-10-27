@@ -1,0 +1,22 @@
+# Material-fonte da marca (pesado e de uso interno; as versões web ficam em assets/brand/)
+_Arquivos_Logo/
+_Manual_ID_Visual_TMLab.pdf
+_logos_contact_sheet.png
+
+# Notas de trabalho e saídas de revisão (screenshots do Playwright)
+prompts_ajuste_identidade_tmlab.md
+_review/
+
+# Sistema e editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+
+# Dependências e temporários, caso surjam
+node_modules/
+__pycache__/
+*.log
+.env

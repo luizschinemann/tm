@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Qual pacote combina com a sua marca? · tm creative lab</title>
+  <meta name="description" content="Responda 4 perguntas rápidas e descubra o plano de social media ideal para o seu momento.">
+  <meta name="theme-color" content="#582035">
+
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/brand/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="tm creative lab">
+  <meta property="og:title" content="Qual pacote combina com a sua marca?">
+  <meta property="og:description" content="Responda 4 perguntas rápidas e descubra o plano de social media ideal para o seu momento.">
+  <!-- TODO: trocar por URL absoluta quando houver domínio (redes sociais não leem caminho relativo). -->
+  <meta property="og:image" content="assets/brand/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="tm creative lab — Qual pacote combina com a sua marca?">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Qual pacote combina com a sua marca?">
+  <meta name="twitter:description" content="Responda 4 perguntas rápidas e descubra o plano de social media ideal para o seu momento.">
+  <meta name="twitter:image" content="assets/brand/og-image.png">
+
+  <link rel="preload" as="image" href="assets/brand/logo-horizontal.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Fraunces:ital,opsz,wght,SOFT@1,9..144,400..500,50&display=swap" rel="stylesheet">
+  <style>
+    /* TODO: a Albra Display é uma fonte comercial licenciada. Quando o arquivo
+       estiver em ./fonts/, descomente o bloco abaixo; até lá, Fraunces italic
+       faz o papel de serifa de destaque.
+    @font-face {
+      font-family: "Albra Display";
+      src: url("fonts/albra-display-medium-italic.woff2") format("woff2");
+      font-weight: 500;
+      font-style: italic;
+      font-display: swap;
+    }
+    */
+
+    :root {
+      /* Primitivos: paleta oficial do manual */
+      --vinho: #582035;
+      --terra: #662D33;
+      --argila: #6B3A38;
+      --bronze: #7B3E3B;
+      --perola: #E0D6D6;
+      --perola-50: #F7F2F2;
+      --nuvem: #CAC4C7;
+      --rubi: #8F1533;
+      --red: #AF0731;
+      --pink: #C75973;
+      --rosa-silvestre: #D07D9B;
+      --linho-rose: #C98B98;
+      --algodao-doce: #D8A4B0;
+      --branco: #FFFFFF;
+
+      /* Semânticos */
+      --bg: var(--branco);
+      --bg-soft: var(--perola-50);
+      --surface: var(--branco);
+      --surface-alt: var(--perola);
+      --border: var(--perola);
+      --border-strong: var(--nuvem);
+      --ink: var(--vinho);
+      --text: var(--vinho);
+      --muted: var(--argila);
+      --accent: var(--red);
+      --accent-hover: var(--rubi);
+      --brand-dark: var(--vinho);
+      --on-dark: var(--branco);
+      --on-dark-soft: var(--algodao-doce);
+      --on-dark-line: rgb(224 214 214 / .25);   /* Pérola a 25% */
+      --shadow-dark: rgb(88 32 53 / .45);        /* Vinho a 45% */
+      --decor: var(--linho-rose);
+      --focus: var(--red);
+
+      --serif: "Albra Display", "Fraunces", Georgia, serif;
+      --sans: "Host Grotesk", system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body { margin: 0; overflow-x: clip; }
+
+    body {
+      background:
+        radial-gradient(circle at 100% 0%, var(--bg-soft) 0%, transparent 55%),
+        var(--bg);
+      background-attachment: fixed;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, a { font: inherit; color: inherit; }
+
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    [tabindex="-1"]:focus { outline: none; }
+
+    /* Serifa de destaque (Albra Display; Fraunces enquanto isso) */
+    .title em,
+    .question,
+    .result__name,
+    .result__price-value,
+    .signature em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 500;
+      font-variation-settings: "SOFT" 50;
+    }
+
+    /* ---------- Layout ---------- */
+
+    .page {
+      position: relative;
+      max-width: 528px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    .site-header {
+      position: absolute;
+      top: 20px;
+      left: 16px;
+      z-index: 1;
+    }
+
+    /* Área de proteção: 0.5x a altura do logo em volta dele */
+    .site-header a {
+      display: block;
+      padding: 20px;
+      margin-left: -20px;
+    }
+
+    .site-header img {
+      display: block;
+      height: 40px;
+      width: auto;
+    }
+
+    .screen {
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 136px 0 64px;
+      animation: fadeUp 350ms ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---------- Elementos gráficos ---------- */
+
+    .decor {
+      position: absolute;
+      inset: 0 0 auto 0;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .decor__butterfly {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      width: 45vmin;
+      height: auto;
+      opacity: 0.10;
+      transform: translate(30%, 30%);
+      display: none;
+    }
+
+    body[data-tela="pergunta"] .decor__butterfly { display: block; }
+
+    /* Formas orgânicas da capa: ocupam só a calha direita, nunca atrás do texto */
+    .decor__shapes {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: min(45vw, calc((100vw - 600px) / 2));
+      aspect-ratio: 420 / 640;
+      display: none;
+      animation: drift 20s ease-in-out infinite alternate;
+    }
+
+    body[data-tela="capa"] .decor__shapes { display: block; }
+
+    .decor__svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .decor__svg--band { display: none; }
+
+    @keyframes drift {
+      from { transform: translate(0, 0); }
+      to   { transform: translate(-8px, 8px); }
+    }
+
+    /* ---------- Tipografia ---------- */
+
+    .label {
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.4;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 20px;
+    }
+
+    .label--square {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .label--square::before {
+      content: "";
+      flex: none;
+      width: 8px;
+      height: 8px;
+      background: var(--border-strong);
+    }
+
+    .title {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin: 0 0 24px;
+    }
+
+    .title em { color: var(--accent); }
+
+    .question {
+      font-size: clamp(1.9rem, 4.2vw, 2.6rem);
+      line-height: 1.12;
+      color: var(--ink);
+      margin: 0 0 32px;
+    }
+
+    .subtitle {
+      font-weight: 300;
+      font-size: 19px;
+      color: var(--muted);
+      margin: 0 0 40px;
+    }
+
+    .signature {
+      font-size: 15px;
+      color: var(--muted);
+      margin: 32px 0 0;
+    }
+
+    .signature em { color: var(--accent); }
+
+    /* ---------- Botão principal ---------- */
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 16px 32px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--on-dark);
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 17px;
+      line-height: 1.2;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 200ms ease, transform 200ms ease;
+    }
+
+    .btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .screen > .btn { align-self: flex-start; }
+
+    /* ---------- Opções ---------- */
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 0 0 32px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .option {
+      width: 100%;
+      min-height: 48px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 1.4;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 200ms ease, background-color 120ms ease, transform 200ms ease;
+    }
+
+    .option__arrow {
+      flex: none;
+      color: var(--border-strong);
+      transition: color 200ms ease;
+    }
+
+    .option:hover,
+    .option:focus-visible {
+      border-color: var(--accent);
+      background: var(--bg-soft);
+      transform: translateX(4px);
+    }
+
+    .option:hover .option__arrow,
+    .option:focus-visible .option__arrow { color: var(--accent); }
+
+    .option:active,
+    .option.is-pressed { background: var(--surface-alt); }
+
+    /* ---------- Progresso ---------- */
+
+    .progress {
+      height: 4px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 0 0 32px;
+    }
+
+    .progress__fill {
+      height: 100%;
+      background: linear-gradient(to right, var(--linho-rose), var(--red));
+      border-radius: 999px;
+      transition: width .4s ease;
+    }
+
+    /* ---------- Links ---------- */
+
+    .link {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 48px;
+      padding: 0;
+      background: none;
+      border: 0;
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--muted);
+      text-decoration: none;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
+      cursor: pointer;
+      transition: color 200ms ease;
+    }
+
+    .link:hover {
+      color: var(--accent);
+      text-decoration-line: underline;
+    }
+
+    /* ---------- Resultado ---------- */
+
+    .result {
+      position: relative;
+      overflow: hidden;
+      padding: 36px;
+      border-radius: 24px;
+      background: var(--brand-dark);
+      color: var(--on-dark);
+      box-shadow: 0 30px 60px -24px var(--shadow-dark);
+      margin: 0 0 24px;
+    }
+
+    .result__butterfly {
+      position: absolute;
+      top: -12%;
+      right: -22%;
+      width: 75%;
+      height: auto;
+      /* 0.16 mantém a tagline Algodão doce em 4.6:1 sobre a borboleta (0.22 dava 4.2:1) */
+      opacity: 0.16;
+      pointer-events: none;
+    }
+
+    .result > :not(.result__butterfly) { position: relative; }
+
+    .result__logo {
+      display: block;
+      height: 32px;
+      width: auto;
+      margin: 0 0 32px;
+    }
+
+    .result__name {
+      font-size: 3.2rem;
+      line-height: 1.05;
+      margin: 0 0 16px;
+    }
+
+    .result__kicker {
+      display: block;
+      font-family: var(--sans);
+      font-style: normal;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.4;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--on-dark-soft);
+      margin: 0 0 8px;
+    }
+
+    .result__tagline {
+      font-weight: 300;
+      font-style: italic;
+      font-size: 18px;
+      line-height: 1.45;
+      color: var(--on-dark-soft);
+      margin: 0 0 28px;
+    }
+
+    .result__items {
+      list-style: none;
+      margin: 0 0 32px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .result__items li {
+      display: flex;
+      gap: 10px;
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .result__items li::before {
+      content: "↘" / "";
+      flex: none;
+      color: var(--decor);
+    }
+
+    .result__price {
+      padding-top: 24px;
+      border-top: 1px solid var(--on-dark-line);
+    }
+
+    .result__price-label {
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--on-dark-soft);
+      margin: 0 0 4px;
+    }
+
+    .result__price-value {
+      font-size: 2.4rem;
+      line-height: 1.2;
+      margin: 0 0 6px;
+    }
+
+    .result__price-value small {
+      font-family: var(--sans);
+      font-style: normal;
+      font-weight: 300;
+      font-size: 0.45em;
+      margin-left: 2px;
+    }
+
+    .result__payment {
+      font-size: 14px;
+      color: var(--on-dark-soft);
+      margin: 0;
+    }
+
+    .notice {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 14px;
+      padding: 16px 18px;
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--text);
+      margin: 0 0 32px;
+    }
+
+    .notice strong { font-weight: 700; }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    /* Abaixo de 900px a calha lateral some: as formas viram uma faixa no topo,
+       à direita do logo, e o conteúdo da capa desce. */
+    @media (max-width: 899px) {
+      .decor__shapes {
+        width: min(62vw, 224px);
+        aspect-ratio: 320 / 200;
+      }
+
+      .decor__svg--gutter { display: none; }
+      .decor__svg--band { display: block; }
+
+      body[data-tela="capa"] .screen { padding-top: 188px; }
+    }
+
+    @media (max-width: 420px) {
+      .site-header a { padding: 16px; margin-left: -16px; }
+      .site-header img { height: 32px; }
+      .decor__butterfly { width: 90vw; opacity: 0.08; }
+      .result { padding: 28px 24px; }
+      .result__name { font-size: 2.6rem; }
+      .actions .btn { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body data-tela="capa">
+  <div class="decor" aria-hidden="true">
+    <img class="decor__butterfly" src="assets/brand/simbolo-rose.svg" alt="">
+    <div class="decor__shapes">
+      <svg class="decor__svg decor__svg--gutter" viewBox="0 0 420 640" role="presentation" focusable="false">
+        <path style="fill:var(--perola)" d="M420 0V560C380 600 318 610 268 582C214 552 210 488 172 446C128 398 46 394 22 322C2 258 50 206 70 150C88 98 66 40 84 0Z"/>
+        <path style="fill:var(--rosa-silvestre);mix-blend-mode:multiply" d="M420 0V430C386 466 330 470 294 434C258 398 276 346 246 302C214 256 152 248 140 192C128 138 172 104 186 58C192 36 186 14 192 0Z"/>
+        <path style="fill:var(--pink)" d="M420 128V352C392 376 350 374 328 346C304 316 318 282 300 252C282 222 252 210 256 176C260 146 292 128 320 120C354 110 392 108 420 128Z"/>
+        <path style="fill:var(--red);mix-blend-mode:multiply" d="M420 0V210C396 234 358 232 338 208C316 182 328 150 310 120C294 94 264 82 268 50C271 24 288 8 300 0Z"/>
+        <path style="fill:var(--vinho)" d="M420 470V600C404 622 372 630 346 616C318 600 314 566 330 540C346 514 372 504 388 486C400 472 410 464 420 470Z"/>
+      </svg>
+      <svg class="decor__svg decor__svg--band" viewBox="0 0 320 200" role="presentation" focusable="false">
+        <path style="fill:var(--perola)" d="M320 0V176C292 198 248 200 214 180C178 158 168 118 132 100C96 82 52 86 30 58C14 38 18 14 28 0Z"/>
+        <path style="fill:var(--rosa-silvestre);mix-blend-mode:multiply" d="M320 0V128C298 146 264 146 242 126C218 104 220 72 192 56C166 42 128 40 118 18C114 10 114 4 116 0Z"/>
+        <path style="fill:var(--pink)" d="M320 40V150C304 164 280 164 266 148C250 130 256 108 244 90C234 74 228 60 238 48C252 32 290 26 320 40Z"/>
+        <path style="fill:var(--red);mix-blend-mode:multiply" d="M320 0V72C304 86 280 84 268 68C256 52 262 34 250 18C244 10 238 4 238 0Z"/>
+        <path style="fill:var(--vinho)" d="M320 128V158C306 176 284 186 268 178C254 170 256 152 270 142C286 130 306 136 320 128Z"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="page">
+    <header class="site-header">
+      <a href="./" aria-label="tm creative lab — início">
+        <img src="assets/brand/logo-horizontal.svg" alt="tm creative lab" width="114" height="40">
+      </a>
+    </header>
+    <main id="app" aria-live="polite"></main>
+  </div>
+
+  <script>
+    // ---------- Configuração ----------
+
+    // Número do WhatsApp com DDI + DDD, só dígitos (ex.: "5511999999999").
+    const WHATSAPP = "5500000000000";
+
+    const PERGUNTAS = [
+      {
+        texto: "Qual é o seu principal objetivo nas redes hoje?",
+        opcoes: [
+          { texto: "Ter um perfil ativo e organizado", nivel: 1 },
+          { texto: "Engajar mais e começar a vender", nivel: 2 },
+          { texto: "Crescer e virar referência no meu nicho", nivel: 3 },
+          { texto: "Tudo isso, com vídeos e acompanhamento de perto", nivel: 4 }
+        ]
+      },
+      {
+        texto: "Com que frequência você quer aparecer no feed?",
+        opcoes: [
+          { texto: "1 vez por semana já está ótimo", nivel: 1 },
+          { texto: "1 a 2 vezes por semana", nivel: 2 },
+          { texto: "3 vezes por semana", nivel: 3 }
+        ]
+      },
+      {
+        texto: "E os vídeos e reels?",
+        opcoes: [
+          { texto: "Não é prioridade agora", nivel: 1 },
+          { texto: "Quero ideias, mas eu mesma(o) gravo e edito", nivel: 3 },
+          { texto: "Quero ajuda para editar meus vídeos", nivel: 4 }
+        ]
+      },
+      {
+        // Esta pergunta define o teto do orçamento.
+        texto: "Quanto você pensa em investir por mês na gestão das redes?",
+        opcoes: [
+          { texto: "Até R$ 1.000", nivel: 1 },
+          { texto: "Entre R$ 1.000 e R$ 1.500", nivel: 2 },
+          { texto: "Entre R$ 1.500 e R$ 2.000", nivel: 3 },
+          { texto: "Acima de R$ 2.000", nivel: 4 }
+        ]
+      }
+    ];
+
+    // Preços em reais (número); a formatação "R$ 1.250,00" é feita automaticamente.
+    const PACOTES = {
+      1: { nome: "Essencial", preco: 800,
+           tagline: "Para manter uma presença constante e organizada nas redes sociais.",
+           itens: ["4 posts no feed", "2 stories",
+                   "Pautas estratégicas alinhadas aos objetivos da marca",
+                   "Legendas estratégicas", "Artes estáticas personalizadas"] },
+      2: { nome: "Estratégico", preco: 1250,
+           tagline: "Para melhorar o engajamento e direcionar o conteúdo para resultados.",
+           itens: ["6 posts no feed (até 2 carrosséis)", "4 stories",
+                   "Planejamento com foco em objetivos",
+                   "CTAs estratégicos em todos os conteúdos",
+                   "Legendas voltadas para conversão"] },
+      3: { nome: "Presença", preco: 1700,
+           tagline: "Para crescer, se posicionar e construir autoridade digital.",
+           itens: ["12 posts no feed (até 2 carrosséis)", "6 stories",
+                   "Planejamento estratégico mensal",
+                   "Calendário de conteúdo organizado", "Storytelling nas legendas"] },
+      4: { nome: "Premium", preco: 2060,
+           tagline: "Para quem quer o acompanhamento mais completo, com vídeos.",
+           itens: ["12 posts no feed (até 3 carrosséis)", "8 stories",
+                   "Planejamento estratégico aprofundado",
+                   "Análise de perfil e direção criativa",
+                   "Edição de até 2 vídeos por mês",
+                   "Ideias para reels e ajustes ao longo do mês"] }
+    };
+
+    // ---------- Estado ----------
+
+    const TOTAL = PERGUNTAS.length;
+    const RESULTADO = TOTAL + 1;
+
+    // etapa: 0 = capa, 1..TOTAL = perguntas, TOTAL + 1 = resultado
+    const state = { etapa: 0, respostas: [] };
+    let progressoAnterior = 0;
+
+    const app = document.getElementById("app");
+
+    const moeda = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+    const formatarPreco = (valor) => moeda.format(valor).replace(/ /g, " ");
+
+    // ---------- Lógica ----------
+
+    function calcularResultado() {
+      const [r1, r2, r3, r4] = state.respostas;
+      const ideal = Math.max(r1, r2, r3);
+      const teto = r4;
+      const recomendado = Math.min(ideal, teto);
+      return { ideal, recomendado, mostrarAviso: ideal > teto };
+    }
+
+    function irPara(etapa) {
+      state.etapa = etapa;
+      render();
+    }
+
+    function responder(nivel) {
+      state.respostas[state.etapa - 1] = nivel;
+      irPara(state.etapa + 1);
+    }
+
+    function voltar() {
+      state.respostas.length = Math.max(0, state.etapa - 2);
+      irPara(state.etapa - 1);
+    }
+
+    function reiniciar() {
+      state.respostas = [];
+      progressoAnterior = 0;
+      irPara(0);
+    }
+
+    // ---------- Telas ----------
+
+    function telaCapa() {
+      return `
+        <section class="screen">
+          <p class="label">Quiz · ${TOTAL} perguntas</p>
+          <h1 class="title" tabindex="-1">Qual pacote combina com a <em>sua marca</em>?</h1>
+          <p class="subtitle">Responda 4 perguntas rápidas e descubra o plano de social media ideal para o seu momento.</p>
+          <button class="btn" type="button" data-acao="comecar">Começar o quiz <span aria-hidden="true">↘</span></button>
+          <p class="signature">alquimia do afeto em <em>estratégia</em></p>
+        </section>`;
+    }
+
+    function telaPergunta(n) {
+      const pergunta = PERGUNTAS[n - 1];
+      const opcoes = pergunta.opcoes.map((opcao) => `
+        <li><button class="option" type="button" data-acao="responder" data-nivel="${opcao.nivel}">${opcao.texto}<span class="option__arrow" aria-hidden="true">↘</span></button></li>`
+      ).join("");
+
+      return `
+        <section class="screen">
+          <div class="progress" role="progressbar" aria-label="Progresso do quiz"
+               aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round((n - 1) / TOTAL * 100)}">
+            <div class="progress__fill" style="width: ${progressoAnterior * 100}%"></div>
+          </div>
+          <p class="label label--square">Pergunta ${n} de ${TOTAL}</p>
+          <h2 class="question" tabindex="-1">${pergunta.texto}</h2>
+          <ul class="options">${opcoes}</ul>
+          <button class="link" type="button" data-acao="voltar"><span aria-hidden="true">←&nbsp;</span>Voltar</button>
+        </section>`;
+    }
+
+    function telaResultado() {
+      const { ideal, recomendado, mostrarAviso } = calcularResultado();
+      const pacote = PACOTES[recomendado];
+      const pacoteIdeal = PACOTES[ideal];
+
+      const itens = pacote.itens.map((item) => `<li>${item}</li>`).join("");
+
+      const aviso = mostrarAviso ? `
+        <p class="notice">
+          Tudo o que você procura está no <strong>Pacote ${pacote.nome}</strong>
+          (${formatarPreco(pacote.preco)}/mês) — ele já organiza a sua presença, e você sobe de pacote quando fizer sentido.
+        </p>` : "";
+
+      const mensagem = `Olá! Fiz o quiz e quero o Pacote ${pacote.nome}.`;
+      const linkWhats = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
+
+      return `
+        <section class="screen">
+          <p class="label">Seu pacote ideal é</p>
+          <article class="result">
+            <img class="result__butterfly" src="assets/brand/simbolo-rose.svg" alt="" aria-hidden="true">
+            <img class="result__logo" src="assets/brand/logo-reduzido-branco.svg" alt="tm lab" width="43" height="32">
+            <h2 class="result__name" tabindex="-1"><span class="result__kicker">Pacote</span> ${pacote.nome}</h2>
+            <p class="result__tagline">${pacote.tagline}</p>
+            <ul class="result__items">${itens}</ul>
+            <div class="result__price">
+              <p class="result__price-label">Valor de troca</p>
+              <p class="result__price-value">${formatarPreco(pacote.preco)}<small>/mês</small></p>
+              <p class="result__payment">Pix, boleto ou cartão</p>
+            </div>
+          </article>
+          ${aviso}
+          <div class="actions">
+            <a class="btn" href="${linkWhats}" target="_blank" rel="noopener">Quero esse pacote — falar no WhatsApp <span aria-hidden="true">↘</span></a>
+            <button class="link" type="button" data-acao="reiniciar">Refazer o quiz</button>
+          </div>
+        </section>`;
+    }
+
+    // ---------- Render ----------
+
+    function render(focar = true) {
+      const { etapa } = state;
+
+      if (etapa === 0) app.innerHTML = telaCapa();
+      else if (etapa <= TOTAL) app.innerHTML = telaPergunta(etapa);
+      else app.innerHTML = telaResultado();
+
+      // Decoração de fundo muda por tela (capa, pergunta, resultado).
+      document.body.dataset.tela = etapa === 0 ? "capa" : etapa <= TOTAL ? "pergunta" : "resultado";
+
+      // A barra nasce com a largura anterior e anima até a nova.
+      if (etapa >= 1 && etapa <= TOTAL) {
+        const novo = (etapa - 1) / TOTAL;
+        const fill = app.querySelector(".progress__fill");
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          fill.style.width = `${novo * 100}%`;
+        }));
+        progressoAnterior = novo;
+      } else {
+        progressoAnterior = 0;
+      }
+
+      // Leva o foco ao título da tela, para leitores de tela e teclado.
+      const titulo = app.querySelector("[tabindex='-1']");
+      if (titulo && focar) titulo.focus({ preventScroll: true });
+      window.scrollTo(0, 0);
+    }
+
+    app.addEventListener("click", (evento) => {
+      const alvo = evento.target.closest("[data-acao]");
+      if (!alvo) return;
+
+      switch (alvo.dataset.acao) {
+        case "comecar":   irPara(1); break;
+        case "responder":
+          // Mostra o estado "pressionado" por 120ms antes de avançar.
+          if (app.querySelector(".is-pressed")) return;
+          alvo.classList.add("is-pressed");
+          setTimeout(() => responder(Number(alvo.dataset.nivel)), 120);
+          break;
+        case "voltar":    voltar(); break;
+        case "reiniciar": reiniciar(); break;
+      }
+    });
+
+    render(false);
+  </script>
+</body>
+</html>
