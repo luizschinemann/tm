@@ -22,7 +22,7 @@ Para cada SVG com PNG de origem também há rasters recortados em `-320`, `-640`
 | `favicon-32.png` | simbolo-06 recortado | Fallback do favicon |
 | `apple-touch-icon.png` | simbolo-01 sobre Vinho, 18% de respiro, 180×180 | iOS |
 | `icon-512.png` | idem, 512×512 | Manifest / ícone de app |
-| `og-image.png` | composição 1200×630 | Open Graph / Twitter do quiz |
-| `og-home.png` | composição 1200×630 (mesmo layout, frase do hero) | Open Graph / Twitter da home |
+| `og-image.png` | composição 1200×630, logo e texto dentro do quadrado central de 630 px (o WhatsApp recorta a miniatura no centro) | Open Graph / Twitter do quiz |
+| `og-home.png` | mesmo layout do og-image, com a frase do hero | Open Graph / Twitter da home |
 
 Observação: o PDF `_Arquivos_Logo/TM_Creative_Lab_Simbolo/TM_Creative_Lab_assinatura_horizontal.pdf` está na pasta errada (é a assinatura horizontal); o símbolo vem de `_Arquivos_Logo/TM_Creative_Lab_simbolo.pdf`.
