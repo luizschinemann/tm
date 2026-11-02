@@ -337,6 +337,27 @@
 
     .site-footer p span { white-space: nowrap; }
 
+    /* Crédito de desenvolvimento (mesmo ícone do site da Thay Almeida, em Argila) */
+    .footer-dev {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 40px;
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-dev img {
+      height: 32px;
+      margin: 0;
+      opacity: .6;
+      transition: opacity .2s;
+    }
+
+    .footer-dev:hover img,
+    .footer-dev:focus-visible img { opacity: 1; }
+
     @media (max-width: 420px) {
       .site-header a { padding: 16px; margin-left: -16px; }
       .site-header img { height: 32px; }
@@ -419,6 +440,14 @@
     <footer class="site-footer">
       <img src="assets/brand/logo-linha.svg" alt="tm creative lab" width="224" height="20">
       <p><span>Afeto cria</span> · <span>Estratégia sustenta</span> · <span>Imagem transforma</span></p>
+      <a class="footer-dev" href="https://www.dumatechnology.com/" target="_blank" rel="noopener noreferrer"
+        aria-label="Desenvolvido por Duma Technology">
+        <span>Desenvolvido por</span>
+        <picture>
+          <source srcset="assets/img/duma.webp" type="image/webp">
+          <img src="assets/img/duma.png" alt="" width="73" height="96" loading="lazy">
+        </picture>
+      </a>
     </footer>
   </div>
 </body>
